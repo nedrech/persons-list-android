@@ -2,6 +2,7 @@ package ru.nedrech.android.personslist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import ru.nedrech.android.personslist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,5 +23,10 @@ class MainActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(binding.mainFrame.id, MainFragment.newInstance())
                 .commitNow()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
