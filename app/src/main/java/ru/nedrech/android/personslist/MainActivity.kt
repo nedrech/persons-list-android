@@ -10,13 +10,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (savedInstanceState == null) {
+
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        if (savedInstanceState == null)
             supportFragmentManager
                 .beginTransaction()
                 .replace(binding.mainFrame.id, MainFragment.newInstance())
                 .commitNow()
-        }
     }
 }
