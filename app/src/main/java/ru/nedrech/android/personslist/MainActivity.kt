@@ -2,7 +2,6 @@ package ru.nedrech.android.personslist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import ru.nedrech.android.personslist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null)
             supportFragmentManager
                 .beginTransaction()
-                .replace(binding.mainFrame.id, MainFragment.newInstance())
+                .replace(binding.mainFrame.id, PersonsFragment.newInstance())
                 .commitNow()
     }
 
