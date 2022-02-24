@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_arrow_back.xml" value="0.196" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.3575" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_edit.xml" value="0.3575" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/adapter_person.xml" value="0.18802083333333333" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/adapter_persons.xml" value="0.67" />
