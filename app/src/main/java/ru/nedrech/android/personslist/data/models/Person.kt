@@ -2,6 +2,7 @@ package ru.nedrech.android.personslist.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "persons")
@@ -26,5 +27,6 @@ data class Person(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    fun getFullName() = "$secondName $firstName $middleName"
+    @Ignore
+    val fullName: String = "$secondName $firstName $middleName"
 }
