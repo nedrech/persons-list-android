@@ -5,20 +5,17 @@ import androidx.room.*
 import ru.nedrech.android.personslist.data.models.Person
 
 @Dao
-interface PeronDao {
+interface PersonDao {
 
     @Query("SELECT * FROM persons")
     fun getAll(): LiveData<List<Person>>
 
-    @Query("SELECT * FROM persons WHERE id = :id LIMIT 1")
-    fun getById(id: Int): Person
-
     @Insert
-    fun insertAll(persons: List<Person>)
+    suspend fun insertAll(persons: List<Person>)
 
     @Delete
-    fun delete(person: Person)
+    suspend fun delete(person: Person)
 
     @Update
-    fun update(person: Person)
+    suspend fun update(person: Person)
 }
