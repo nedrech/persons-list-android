@@ -1,4 +1,4 @@
-package ru.nedrech.android.personslist
+package ru.nedrech.android.personslist.data.entities
 
 data class Person(
 

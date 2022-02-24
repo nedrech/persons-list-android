@@ -1,4 +1,4 @@
-package ru.nedrech.android.personslist
+package ru.nedrech.android.personslist.ui.persons
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.nedrech.android.personslist.data.entities.Person
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
 
 class PersonsFragment : Fragment() {
@@ -17,9 +18,7 @@ class PersonsFragment : Fragment() {
 
     private lateinit var viewModel: PersonsViewModel
 
-    private var _binding: FragmentPersonsBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentPersonsBinding
 
     private val adapter = PersonsAdapter()
 
@@ -27,8 +26,8 @@ class PersonsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentPersonsBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentPersonsBinding.inflate(inflater, container, false)
 
         binding.recycler.layoutManager = LinearLayoutManager(activity)
         binding.recycler.adapter = this.adapter
@@ -62,7 +61,8 @@ class PersonsFragment : Fragment() {
             Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
             Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
             Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas")))
+            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas")
+        ))
 
         adapter.notifyDataSetChanged()
     }

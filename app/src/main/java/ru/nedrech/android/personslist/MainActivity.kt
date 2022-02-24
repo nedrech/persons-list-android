@@ -3,6 +3,7 @@ package ru.nedrech.android.personslist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.nedrech.android.personslist.databinding.ActivityMainBinding
+import ru.nedrech.android.personslist.ui.persons.PersonsFragment
 
 class MainActivity : AppCompatActivity() {
 

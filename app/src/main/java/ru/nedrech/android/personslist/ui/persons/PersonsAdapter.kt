@@ -1,9 +1,9 @@
-package ru.nedrech.android.personslist
+package ru.nedrech.android.personslist.ui.persons
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import ru.nedrech.android.personslist.data.entities.Person
 import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
 
 class PersonsAdapter : RecyclerView.Adapter<PersonsViewHolder>() {
