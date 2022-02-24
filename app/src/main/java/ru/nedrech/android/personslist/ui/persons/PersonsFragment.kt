@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.nedrech.android.personslist.data.entities.Person
+import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
 
 class PersonsFragment : Fragment() {
