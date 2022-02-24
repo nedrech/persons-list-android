@@ -1,9 +1,6 @@
 package ru.nedrech.android.personslist.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import ru.nedrech.android.personslist.data.models.Person
 
 @Dao
@@ -20,4 +17,7 @@ interface PeronDao {
 
     @Delete
     fun delete(person: Person)
+
+    @Update
+    fun update(person: Person)
 }
