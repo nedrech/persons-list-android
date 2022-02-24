@@ -27,6 +27,6 @@ data class Person(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
-    @Ignore
-    val fullName: String = "$secondName $firstName $middleName"
+    @delegate:Ignore
+    val fullName: String by lazy { "$secondName $firstName $middleName" }
 }
