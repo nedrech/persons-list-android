@@ -7,9 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "persons")
 data class Person(
 
-    @PrimaryKey
-    val id: Int,
-
     @ColumnInfo(name = "first_name")
     val firstName: String,
 
@@ -26,14 +23,8 @@ data class Person(
 
     val description: String
 ) {
-    constructor(
-        firstName: String,
-        secondName: String,
-        middleName: String?,
-        role: String,
-        photoUrl: String?,
-        description: String
-    ) : this(Int.MIN_VALUE, firstName, secondName, middleName, role, photoUrl, description)
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
     fun getFullName() = "$secondName $firstName $middleName"
 }

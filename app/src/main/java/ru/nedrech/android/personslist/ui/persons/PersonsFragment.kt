@@ -40,6 +40,13 @@ class PersonsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(PersonsViewModel::class.java)
+        viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
+            recyclerAdapter.setPersonsList(persons)
+            recyclerAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.insert()
     }
 }
