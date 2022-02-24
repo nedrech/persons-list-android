@@ -15,7 +15,13 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        viewModel.delete(adapter.items[viewHolder.adapterPosition])
-        adapter.deleteItem(viewHolder.adapterPosition)
+        if (direction == ItemTouchHelper.LEFT) {
+            viewModel.delete(adapter.items[viewHolder.adapterPosition])
+            adapter.deleteItem(viewHolder.adapterPosition)
+        } else {
+            // TODO: Add edit fragment
+        }
     }
+
+
 }
