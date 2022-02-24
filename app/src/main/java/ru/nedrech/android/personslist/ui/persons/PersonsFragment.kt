@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.nedrech.android.personslist.App
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
 
@@ -38,32 +39,5 @@ class PersonsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PersonsViewModel::class.java)
-
-        adapter.setPersonsList(listOf(
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas"),
-            Person("Иван", "Иванов", "Иванович", "программист", null, "Asdasfasfas")
-        ))
-
-        adapter.notifyDataSetChanged()
     }
 }
