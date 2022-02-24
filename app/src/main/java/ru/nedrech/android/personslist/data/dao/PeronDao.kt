@@ -1,5 +1,6 @@
 package ru.nedrech.android.personslist.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import ru.nedrech.android.personslist.data.models.Person
 
@@ -7,7 +8,7 @@ import ru.nedrech.android.personslist.data.models.Person
 interface PeronDao {
 
     @Query("SELECT * FROM persons")
-    fun getAll(): List<Person>
+    fun getAll(): LiveData<List<Person>>
 
     @Query("SELECT * FROM persons WHERE id = :id LIMIT 1")
     fun getById(id: Int): Person
