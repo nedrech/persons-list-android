@@ -1,4 +1,4 @@
-package ru.nedrech.android.personslist
+package ru.nedrech.android.personslist.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
