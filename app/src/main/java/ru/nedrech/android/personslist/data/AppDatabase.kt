@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import ru.nedrech.android.personslist.data.dao.PersonDao
 import ru.nedrech.android.personslist.data.models.Person
 
-@Database(entities = [Person::class], version = 1)
+@Database(entities = [Person::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
 }
