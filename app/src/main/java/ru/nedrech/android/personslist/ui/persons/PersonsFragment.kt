@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.nedrech.android.personslist.App
-import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
 
 class PersonsFragment : Fragment() {
@@ -21,7 +19,7 @@ class PersonsFragment : Fragment() {
 
     private lateinit var binding: FragmentPersonsBinding
 
-    private val adapter = PersonsAdapter()
+    private lateinit var recyclerAdapter: PersonsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,8 +28,12 @@ class PersonsFragment : Fragment() {
     ): View {
         binding = FragmentPersonsBinding.inflate(inflater, container, false)
 
-        binding.recycler.layoutManager = LinearLayoutManager(activity)
-        binding.recycler.adapter = this.adapter
+        recyclerAdapter = PersonsAdapter()
+
+        binding.recycler.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = recyclerAdapter
+        }
 
         return binding.root
     }
