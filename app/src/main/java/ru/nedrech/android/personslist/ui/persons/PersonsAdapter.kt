@@ -6,36 +6,34 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
 
-class PersonsAdapter : RecyclerView.Adapter<PersonsViewHolder>() {
+class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
 
-    var persons = mutableListOf<Person>()
+    var items = mutableListOf<Person>()
+        set(value) {
+            field = value
+            notifyItemChanged(0, value.size)
+        }
 
-    fun setPersonsList(persons: List<Person>) {
-        this.persons = persons.toMutableList()
-        notifyDataSetChanged()
+    fun deleteItem(position: Int) {
+        items.removeAt(position)
+        notifyItemRemoved(position)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         val binding = AdapterPersonsBinding.inflate(inflater, parent, false)
-        return PersonsViewHolder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PersonsViewHolder, position: Int) {
-        val person = persons[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val person = items[position]
 
-        holder.binding.name.text = person.getFullName()
+        holder.binding.name.text = person.fullName
         holder.binding.role.text = person.role
-
         //Glide.with(holder.itemView.context).load(person.photoUrl).into(holder.binding.photo)
     }
 
-    override fun getItemCount(): Int {
-        return persons.size
-    }
-}
+    override fun getItemCount(): Int = items.size
 
-class PersonsViewHolder(val binding: AdapterPersonsBinding) : RecyclerView.ViewHolder(binding.root) {
-
+    class ViewHolder(val binding: AdapterPersonsBinding) : RecyclerView.ViewHolder(binding.root)
 }

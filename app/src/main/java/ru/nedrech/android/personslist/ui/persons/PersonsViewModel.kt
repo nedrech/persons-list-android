@@ -20,10 +20,15 @@ class PersonsViewModel : ViewModel() {
         allPersons = repository.getAll()
     }
 
-    fun insert()
-    {
+    fun insert() {
         viewModelScope.launch {
             repository.insertAll(listOf(Person("Иван", "Иванов", "Иванович", "программист", null, "ASdasdas")))
+        }
+    }
+
+    fun delete(person: Person) {
+        viewModelScope.launch {
+            repository.delete(person)
         }
     }
 }

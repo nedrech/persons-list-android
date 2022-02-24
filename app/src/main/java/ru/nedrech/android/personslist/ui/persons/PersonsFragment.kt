@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
 
@@ -19,7 +20,7 @@ class PersonsFragment : Fragment() {
 
     private lateinit var binding: FragmentPersonsBinding
 
-    private lateinit var recyclerAdapter: PersonsAdapter
+    private lateinit var adapter: PersonsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +29,9 @@ class PersonsFragment : Fragment() {
     ): View {
         binding = FragmentPersonsBinding.inflate(inflater, container, false)
 
-        recyclerAdapter = PersonsAdapter()
-
-        binding.recycler.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = recyclerAdapter
-        }
+        initRecyclerView()
+        initViewModel()
+        initSwipes()
 
         return binding.root
     }
@@ -41,15 +39,26 @@ class PersonsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(PersonsViewModel::class.java)
+        viewModel.insert()
+    }
+
+    private fun initRecyclerView()
+    {
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        adapter = PersonsAdapter()
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun initViewModel()
+    {
+        viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
         viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
-            val currentSize = recyclerAdapter.persons.size
-
-            recyclerAdapter.setPersonsList(persons)
-
-            if (currentSize == 0) {
-                recyclerAdapter.notifyItemRangeInserted(0, persons.size)
-            }
+            adapter.items = persons.toMutableList()
         }
+    }
+
+    private fun initSwipes() {
+        ItemTouchHelper(PersonsSwipeHelper(viewModel, adapter))
+            .attachToRecyclerView(binding.recyclerView)
     }
 }
