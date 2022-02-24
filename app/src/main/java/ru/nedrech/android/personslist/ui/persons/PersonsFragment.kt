@@ -43,10 +43,13 @@ class PersonsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(PersonsViewModel::class.java)
         viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
-            recyclerAdapter.setPersonsList(persons)
-            recyclerAdapter.notifyDataSetChanged()
-        }
+            val currentSize = recyclerAdapter.persons.size
 
-        viewModel.insert()
+            recyclerAdapter.setPersonsList(persons)
+
+            if (currentSize == 0) {
+                recyclerAdapter.notifyItemRangeInserted(0, persons.size)
+            }
+        }
     }
 }
