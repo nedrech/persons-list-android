@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
+import ru.nedrech.android.personslist.util.observeOnce
 
 class PersonsFragment : Fragment() {
 
@@ -16,11 +17,11 @@ class PersonsFragment : Fragment() {
         fun newInstance() = PersonsFragment()
     }
 
-    private lateinit var viewModel: PersonsViewModel
+    lateinit var viewModel: PersonsViewModel
 
-    private lateinit var binding: FragmentPersonsBinding
+    lateinit var binding: FragmentPersonsBinding
 
-    private lateinit var adapter: PersonsAdapter
+    lateinit var adapter: PersonsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,13 +53,13 @@ class PersonsFragment : Fragment() {
     private fun initViewModel()
     {
         viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
-        viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
+        viewModel.allPersons.observeOnce(viewLifecycleOwner) { persons ->
             adapter.items = persons.toMutableList()
         }
     }
 
     private fun initSwipes() {
-        ItemTouchHelper(PersonsSwipeHelper(viewModel, adapter))
+        ItemTouchHelper(PersonsSwipeHelper(this))
             .attachToRecyclerView(binding.recyclerView)
     }
 }
