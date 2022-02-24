@@ -6,11 +6,13 @@ data class Person(
 
     val secondName: String,
 
-    val midName: String?,
+    val middleName: String?,
 
     val role: String,
 
     val photoUrl: String?,
 
     val Description: String
-)
+) {
+    fun getFullName() = "$secondName $firstName $middleName"
+}
