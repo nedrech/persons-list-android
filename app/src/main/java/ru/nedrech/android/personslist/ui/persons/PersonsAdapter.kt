@@ -3,6 +3,7 @@ package ru.nedrech.android.personslist.ui.persons
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
 
@@ -40,7 +41,7 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
 
         holder.binding.name.text = person.fullName
         holder.binding.role.text = person.role
-        //Glide.with(holder.itemView.context).load(person.photoUrl).into(holder.binding.photo)
+        Glide.with(holder.itemView.context).load(person.photoUrl).into(holder.binding.photo)
     }
 
     override fun getItemCount(): Int = items.size

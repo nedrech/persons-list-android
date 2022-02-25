@@ -20,9 +20,9 @@ class PersonsViewModel : ViewModel() {
         allPersons = repository.getAll()
     }
 
-    fun insert() {
+    fun insert(persons: List<Person>) {
         viewModelScope.launch {
-            repository.insertMany(listOf(Person("Иван", "Иванов", "Иванович", "программист", null, "ASdasdas")))
+            repository.insertMany(persons)
         }
     }
 
