@@ -18,6 +18,10 @@ class EditDialogFragment : DialogFragment() {
     ): View {
         binding = EditDialogBinding.inflate(inflater, container, false)
 
+        binding.cancel.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
 }
