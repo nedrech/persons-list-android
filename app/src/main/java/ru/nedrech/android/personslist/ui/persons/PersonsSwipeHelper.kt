@@ -3,7 +3,6 @@ package ru.nedrech.android.personslist.ui.persons
 import android.graphics.Canvas
 import android.graphics.Rect
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -37,6 +36,7 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
             EditDialogFragment.newInstance(
                 item.fullName, item.role, item.description
             ).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
+            fragment.adapter.notifyItemChanged(position)
         }
     }
 
@@ -64,7 +64,7 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
         isCurrentlyActive: Boolean
     ) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-                        val itemView = viewHolder.itemView
+            val itemView = viewHolder.itemView
             val height = itemView.bottom - itemView.top
             val width = height / 3
 
