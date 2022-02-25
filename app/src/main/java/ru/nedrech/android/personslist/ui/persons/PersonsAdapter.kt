@@ -24,6 +24,11 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
         notifyItemInserted(position)
     }
 
+    fun updateItem(position: Int)
+    {
+        notifyItemChanged(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AdapterPersonsBinding.inflate(inflater, parent, false)

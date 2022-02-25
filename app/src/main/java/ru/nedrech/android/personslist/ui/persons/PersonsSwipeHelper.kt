@@ -36,7 +36,7 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
             EditDialogFragment.newInstance(
                 item.fullName, item.role, item.description
             ).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
-            fragment.adapter.notifyItemChanged(position)
+            fragment.adapter.updateItem(position)
         }
     }
 
@@ -63,6 +63,8 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
+        var newDx = dX
+
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             val itemView = viewHolder.itemView
             val height = itemView.bottom - itemView.top
@@ -82,12 +84,26 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
                 resId = R.drawable.ic_edit
                 rect.left = itemView.left + width
                 rect.right = itemView.left + 2 * width
+
+                val s = itemView.width * rightSwipeThreshold
+                if (dX >= s) {
+                    newDx = s
+                    defaultSwipeThreshold = rightSwipeThreshold
+                }
             }
 
             ContextCompat.getDrawable(fragment.requireContext(), resId)
                 ?.apply { bounds = rect }
                 ?.draw(c)
         }
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+        super.onChildDraw(c, recyclerView, viewHolder, newDx, dY, actionState, isCurrentlyActive)
+    }
+
+    private val rightSwipeThreshold = .2f
+
+    private var defaultSwipeThreshold = .5f
+
+    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
+        return defaultSwipeThreshold
     }
 }
