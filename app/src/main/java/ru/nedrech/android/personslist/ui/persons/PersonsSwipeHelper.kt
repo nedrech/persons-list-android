@@ -3,6 +3,7 @@ package ru.nedrech.android.personslist.ui.persons
 import android.graphics.Canvas
 import android.graphics.Rect
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -25,15 +26,17 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        if (direction == ItemTouchHelper.LEFT) {
-            val position = viewHolder.adapterPosition
-            val item = fragment.adapter.items[position]
+        val position = viewHolder.adapterPosition
+        val item = fragment.adapter.items[position]
 
+        if (direction == ItemTouchHelper.LEFT) {
             fragment.adapter.deleteItem(position)
 
             showSnackBar(position, item)
         } else {
-            EditDialogFragment().show(fragment.parentFragmentManager, "Edit dialog")
+            EditDialogFragment.newInstance(
+                item.fullName, item.role, item.description
+            ).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
         }
     }
 
