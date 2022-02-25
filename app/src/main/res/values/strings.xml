@@ -2,5 +2,6 @@
     <string name="app_name">Persons List</string>
     <string name="main_title">Тест апп</string>
     <string name="removed_from_list">Удалили случайно?</string>
-    <string name="cancel">ОТМЕНИТЬ</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
 </resources>

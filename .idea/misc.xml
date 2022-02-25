@@ -6,9 +6,15 @@
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_arrow_back.xml" value="0.196" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.3575" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable-anydpi/ic_edit.xml" value="0.3575" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable/button_cancel.xml" value="0.294" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable/button_save.xml" value="0.294" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable/cancel_button.xml" value="0.294" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable/round.xml" value="0.294" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/drawable/save_button.xml" value="0.294" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/adapter_person.xml" value="0.18802083333333333" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/adapter_persons.xml" value="0.67" />
+        <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/edit_dialog.xml" value="0.33" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/fragment_main.xml" value="0.358695652173913" />
         <entry key="..\:/code/android/persons-list-android/app/src/main/res/layout/fragment_persons.xml" value="0.33" />
       </map>

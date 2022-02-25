@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import ru.nedrech.android.personslist.R
 import ru.nedrech.android.personslist.data.models.Person
+import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment
 
 
 class PersonsSwipeHelper(private val fragment: PersonsFragment)
@@ -32,7 +33,7 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
 
             showSnackBar(position, item)
         } else {
-            // TODO: Add edit fragment
+            EditDialogFragment().show(fragment.parentFragmentManager, "Edit dialog")
         }
     }
 
