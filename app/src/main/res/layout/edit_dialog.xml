@@ -37,6 +37,7 @@
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:maxHeight="200dp"
         tools:text="Описание сотрудника" />
 
     <LinearLayout
