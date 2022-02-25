@@ -1,5 +1,7 @@
 package ru.nedrech.android.personslist.ui.persons
 
+import android.graphics.Canvas
+import android.graphics.Rect
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -47,4 +49,41 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
                 }
             })
             .show()
+
+    override fun onChildDraw(
+        c: Canvas,
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean
+    ) {
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                        val itemView = viewHolder.itemView
+            val height = itemView.bottom - itemView.top
+            val width = height / 3
+
+            val resId: Int
+
+            val rect = Rect()
+            rect.top = itemView.top + width
+            rect.bottom = itemView.bottom - width
+
+            if (dX < 0) {
+                resId = R.drawable.ic_delete
+                rect.left = itemView.right - 2 * width
+                rect.right = itemView.right - width
+            } else {
+                resId = R.drawable.ic_edit
+                rect.left = itemView.left + width
+                rect.right = itemView.left + 2 * width
+            }
+
+            ContextCompat.getDrawable(fragment.requireContext(), resId)
+                ?.apply { bounds = rect }
+                ?.draw(c)
+        }
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+    }
 }
