@@ -43,6 +43,12 @@ class PersonsFragment : Fragment() {
         viewModel.insert()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        viewModel.deleteVarious(adapter.items)
+    }
+
     private fun initRecyclerView()
     {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -53,8 +59,9 @@ class PersonsFragment : Fragment() {
     private fun initViewModel()
     {
         viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
-        viewModel.allPersons.observeOnce(viewLifecycleOwner) { persons ->
-            adapter.items = persons.toMutableList()
+        viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
+            if (adapter.items.size == 0 || adapter.items.size == persons.size)
+                adapter.items = persons.toMutableList()
         }
     }
 

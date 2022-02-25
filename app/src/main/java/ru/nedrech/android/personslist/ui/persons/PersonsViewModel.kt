@@ -31,4 +31,22 @@ class PersonsViewModel : ViewModel() {
             repository.delete(person)
         }
     }
+
+    private fun deleteMany(persons: List<Person>) {
+        viewModelScope.launch {
+            repository.deleteMany(persons)
+        }
+    }
+
+    fun deleteVarious(persons: List<Person>) {
+        val dbPersons = allPersons.value!!
+
+        val sum = persons + dbPersons
+
+        val difference = sum.groupBy { it.id }
+            .filter { it.value.size == 1 }
+            .flatMap { it.value }
+
+        deleteMany(difference)
+    }
 }
