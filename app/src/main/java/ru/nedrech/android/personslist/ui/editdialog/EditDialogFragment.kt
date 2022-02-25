@@ -15,7 +15,7 @@ class EditDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = EditDialogBinding.inflate(inflater, container, false)
 
         return binding.root
