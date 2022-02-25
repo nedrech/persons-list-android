@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
-import ru.nedrech.android.personslist.util.observeOnce
 
 class PersonsFragment : Fragment() {
 

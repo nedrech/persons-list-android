@@ -11,7 +11,6 @@ import ru.nedrech.android.personslist.R
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment
 
-
 class PersonsSwipeHelper(private val fragment: PersonsFragment)
     : ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE,
 ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
