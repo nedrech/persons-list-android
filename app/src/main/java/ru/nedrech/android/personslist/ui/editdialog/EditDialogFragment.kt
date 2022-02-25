@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
 import ru.nedrech.android.personslist.ui.persons.PersonsViewModel
 
-class EditDialogFragment(private val viewModel: PersonsViewModel) : DialogFragment() {
+class EditDialogFragment() : DialogFragment() {
 
     companion object {
         val TAG = null
@@ -18,8 +18,8 @@ class EditDialogFragment(private val viewModel: PersonsViewModel) : DialogFragme
         private const val ROLE_ARG = "roleArg"
         private const val DESC_ARG = "descArg"
 
-        fun newInstance(viewModel: PersonsViewModel, name: String, role: String, description: String) =
-            EditDialogFragment(viewModel)
+        fun newInstance(name: String, role: String, description: String) =
+            EditDialogFragment()
                 .apply { arguments = bundleOf(
                     NAME_ARG to name,
                     ROLE_ARG to role,

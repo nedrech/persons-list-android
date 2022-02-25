@@ -32,7 +32,7 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
 
             showSnackBar(position, item)
         } else {
-            EditDialogFragment.newInstance(fragment.viewModel,
+            EditDialogFragment.newInstance(
                 item.name, item.role, item.description
             ).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
             fragment.adapter.updateItem(position)
