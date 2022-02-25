@@ -39,7 +39,7 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val person = items[position]
 
-        holder.binding.name.text = person.fullName
+        holder.binding.name.text = person.name
         holder.binding.role.text = person.role
         Glide.with(holder.itemView.context).load(person.photoUrl).into(holder.binding.photo)
     }

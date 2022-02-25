@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
+import ru.nedrech.android.personslist.ui.persons.PersonsViewModel
 
-class EditDialogFragment : DialogFragment() {
+class EditDialogFragment(private val viewModel: PersonsViewModel) : DialogFragment() {
 
     companion object {
         val TAG = null
@@ -17,8 +18,8 @@ class EditDialogFragment : DialogFragment() {
         private const val ROLE_ARG = "roleArg"
         private const val DESC_ARG = "descArg"
 
-        fun newInstance(name: String, role: String, description: String) =
-            EditDialogFragment()
+        fun newInstance(viewModel: PersonsViewModel, name: String, role: String, description: String) =
+            EditDialogFragment(viewModel)
                 .apply { arguments = bundleOf(
                     NAME_ARG to name,
                     ROLE_ARG to role,
@@ -50,6 +51,7 @@ class EditDialogFragment : DialogFragment() {
     ): View {
         binding = EditDialogBinding.inflate(inflater, container, false)
 
+        binding.save.setOnClickListener { save() }
         binding.cancel.setOnClickListener { dismiss() }
 
         binding.name.setText(name)
@@ -57,5 +59,10 @@ class EditDialogFragment : DialogFragment() {
         binding.description.setText(description)
 
         return binding.root
+    }
+
+    private fun save()
+    {
+
     }
 }
