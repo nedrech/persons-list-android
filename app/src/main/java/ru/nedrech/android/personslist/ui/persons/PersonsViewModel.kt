@@ -22,7 +22,7 @@ class PersonsViewModel : ViewModel() {
 
     fun insert() {
         viewModelScope.launch {
-            repository.insertAll(listOf(Person("Иван", "Иванов", "Иванович", "программист", null, "ASdasdas")))
+            repository.insertMany(listOf(Person("Иван", "Иванов", "Иванович", "программист", null, "ASdasdas")))
         }
     }
 

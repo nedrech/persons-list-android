@@ -11,10 +11,13 @@ interface PersonDao {
     fun getAll(): LiveData<List<Person>>
 
     @Insert
-    suspend fun insertAll(persons: List<Person>)
+    suspend fun insertMany(persons: List<Person>)
 
     @Delete
     suspend fun delete(person: Person)
+
+    @Delete
+    suspend fun deleteMany(persons: List<Person>)
 
     @Update
     suspend fun update(person: Person)
