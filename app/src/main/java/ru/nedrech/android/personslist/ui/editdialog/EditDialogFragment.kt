@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
-import ru.nedrech.android.personslist.ui.persons.PersonsViewModel
 
-class EditDialogFragment() : DialogFragment() {
+class EditDialogFragment : DialogFragment() {
 
     companion object {
         val TAG = null

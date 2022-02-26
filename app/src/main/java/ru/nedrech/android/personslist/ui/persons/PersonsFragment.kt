@@ -54,8 +54,7 @@ class PersonsFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun initViewModel()
-    {
+    private fun initViewModel() {
         viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
         viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
             if (adapter.items.size == 0 || adapter.items.size == persons.size) {
