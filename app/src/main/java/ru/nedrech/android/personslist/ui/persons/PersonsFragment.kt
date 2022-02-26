@@ -57,6 +57,9 @@ class PersonsFragment : Fragment() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
         viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
+            if (persons.isEmpty())
+                viewModel.seedDatabase()
+
             if (adapter.items.size == 0 || adapter.items.size == persons.size) {
                 if (binding.spinner.isVisible) binding.spinner.visibility = View.INVISIBLE
                 adapter.items = persons.toMutableList()
