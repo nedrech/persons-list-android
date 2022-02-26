@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        initToolBar()
 
         if (savedInstanceState == null)
             supportFragmentManager
@@ -28,5 +27,11 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun initToolBar()
+    {
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
