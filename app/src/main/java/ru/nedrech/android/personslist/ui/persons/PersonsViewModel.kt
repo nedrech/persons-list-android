@@ -43,27 +43,29 @@ class PersonsViewModel : ViewModel() {
                 "Eu cum iuvaret debitis voluptatibus, esse perfecto reformidans id has. Eu cum iuvaret debitis voluptatibus, esse perfecto reformidans id has. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at. Sale liber et vel. Ceteros assentior omittantur cum ad.\n" +
                 "Nec labore cetero theophrastus no, ei vero facer veritus nec. Odio contentiones sed cu, usu commodo prompta prodesset id. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at."
 
+        val photoUrl = "https://thispersondoesnotexist.com/image"
+
         insertMany(listOf(
-            Person("Борисов Тимофей Святославович", "Орнитолог", "https://randomuser.me/api/portraits/med/men/75.jpg", filler),
-            Person("Рудаков Игорь Михайлович", "Кинорежиссер", "https://randomuser.me/api/portraits/med/men/76.jpg", filler),
-            Person("Федоров Захар Даниилович", "Машинист локомотива", "https://randomuser.me/api/portraits/med/men/77.jpg", filler),
-            Person("Баранов Артём Александрович", "Тюремный надзиратель", "https://randomuser.me/api/portraits/med/men/78.jpg", filler),
-            Person("Воронин Владислав Алексеевич", "Продюсер", "https://randomuser.me/api/portraits/med/men/79.jpg", filler),
-            Person("Окулова София Максимовна", "Канонир", "https://randomuser.me/api/portraits/med/women/75.jpg", filler),
-            Person("Левина Мария Дмитриевна", "Ботаник", "https://randomuser.me/api/portraits/med/women/76.jpg", filler),
-            Person("Вавилов Марк Артёмович", "Инженер-лесотехник", "https://randomuser.me/api/portraits/med/men/80.jpg", filler),
-            Person("Гончарова Софья Максимовна", "Журналист", "https://randomuser.me/api/portraits/med/women/77.jpg", filler),
-            Person("Овчинникова Мелания Александровна", "Авиационный техник", "https://randomuser.me/api/portraits/med/women/78.jpg", filler),
-            Person("Рябов Адам Макарович", "Каскадёр", "https://randomuser.me/api/portraits/med/men/81.jpg", filler),
-            Person("Глебова Ева Артёмовна", "Виноградарь", "https://randomuser.me/api/portraits/med/women/79.jpg", filler),
-            Person("Никитина Ксения Тихоновна", "Плиточник", "https://randomuser.me/api/portraits/med/women/80.jpg", filler),
-            Person("Губанов Вадим Георгиевич", "Историк", "https://randomuser.me/api/portraits/med/men/82.jpg", filler),
-            Person("Корнеева Варвара Ярославовна", "Хлебороб", "https://randomuser.me/api/portraits/med/women/81.jpg", filler),
-            Person("Мальцев Ибрагим Алексеевич", "Морской пехотинец", "https://randomuser.me/api/portraits/med/men/83.jpg", filler),
-            Person("Сорокин Леонид Артёмович", "Кинодраматург", "https://randomuser.me/api/portraits/med/men/84.jpg", filler),
-            Person("Медведев Виталий Артёмович", "Лекальщик", "https://randomuser.me/api/portraits/med/men/85.jpg", filler),
-            Person("Крылова Марьям Савельевна", "Кинолог", "https://randomuser.me/api/portraits/med/women/82.jpg", filler),
-            Person("Морозов Дмитрий Никитич", "Художник", "https://randomuser.me/api/portraits/med/men/86.jpg", filler)
+            Person("Борисов Тимофей Святославович", "Орнитолог", "$photoUrl?1", filler),
+            Person("Рудаков Игорь Михайлович", "Кинорежиссер", "$photoUrl?2", filler),
+            Person("Федоров Захар Даниилович", "Машинист локомотива", "$photoUrl?3", filler),
+            Person("Баранов Артём Александрович", "Тюремный надзиратель", "$photoUrl?4", filler),
+            Person("Воронин Владислав Алексеевич", "Продюсер", "$photoUrl?5", filler),
+            Person("Окулова София Максимовна", "Канонир", "$photoUrl?6", filler),
+            Person("Левина Мария Дмитриевна", "Ботаник", "$photoUrl?7", filler),
+            Person("Вавилов Марк Артёмович", "Инженер-лесотехник", "$photoUrl?8", filler),
+            Person("Гончарова Софья Максимовна", "Журналист", "$photoUrl?9", filler),
+            Person("Овчинникова Мелания Александровна", "Авиационный техник", "$photoUrl?10", filler),
+            Person("Рябов Адам Макарович", "Каскадёр", "$photoUrl?11", filler),
+            Person("Глебова Ева Артёмовна", "Виноградарь", "$photoUrl?12", filler),
+            Person("Никитина Ксения Тихоновна", "Плиточник", "$photoUrl?13", filler),
+            Person("Губанов Вадим Георгиевич", "Историк", "$photoUrl?14", filler),
+            Person("Корнеева Варвара Ярославовна", "Хлебороб", "$photoUrl?15", filler),
+            Person("Мальцев Ибрагим Алексеевич", "Морской пехотинец", "$photoUrl?16", filler),
+            Person("Сорокин Леонид Артёмович", "Кинодраматург", "$photoUrl?17", filler),
+            Person("Медведев Виталий Артёмович", "Лекальщик", "$photoUrl?18", filler),
+            Person("Крылова Марьям Савельевна", "Кинолог", "$photoUrl?19", filler),
+            Person("Морозов Дмитрий Никитич", "Художник", "$photoUrl?20", filler)
         ))
     }
 

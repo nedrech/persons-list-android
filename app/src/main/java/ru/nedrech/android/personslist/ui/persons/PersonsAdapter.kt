@@ -1,13 +1,16 @@
 package ru.nedrech.android.personslist.ui.persons
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
+import ru.nedrech.android.personslist.ui.PersonActivity
 
-class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
+class PersonsAdapter(private val context: Context) : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
 
     var items = mutableListOf<Person>()
         set(value) {
@@ -42,6 +45,10 @@ class PersonsAdapter : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
         holder.binding.name.text = person.name
         holder.binding.role.text = person.role
         Glide.with(holder.itemView.context).load(person.photoUrl).into(holder.binding.photo)
+
+        holder.itemView.setOnClickListener {
+            PersonActivity.show(context, person)
+        }
     }
 
     override fun getItemCount(): Int = items.size

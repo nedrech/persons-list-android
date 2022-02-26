@@ -50,7 +50,7 @@ class PersonsFragment : Fragment() {
     private fun initRecyclerView()
     {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = PersonsAdapter()
+        adapter = PersonsAdapter(requireContext())
         binding.recyclerView.adapter = adapter
     }
 
