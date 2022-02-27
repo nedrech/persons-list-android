@@ -6,43 +6,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import ru.nedrech.android.personslist.data.models.Person
+import ru.nedrech.android.personslist.data.models.PersonData
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
 
 class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment() {
 
-    companion object {
-        val TAG = null
+    interface OnSaveListener {
+        fun onSave(updatedData: PersonData)
+    }
 
+    companion object {
         private const val NAME_ARG = "nameArg"
         private const val ROLE_ARG = "roleArg"
         private const val DESC_ARG = "descArg"
 
-        fun newInstance(person: Person, listener: OnSaveListener) =
-            EditDialogFragment(listener)
-                .apply { arguments = bundleOf(
-                    NAME_ARG to person.name,
-                    ROLE_ARG to person.role,
-                    DESC_ARG to person.description
-                )}
+        fun show(
+            fragmentManager: FragmentManager,
+            personData: PersonData,
+            listener: OnSaveListener
+        ) = EditDialogFragment(listener)
+            .apply {
+                arguments = bundleOf(
+                    NAME_ARG to personData.name,
+                    ROLE_ARG to personData.role,
+                    DESC_ARG to personData.description
+                )
+            }
+            .showNow(fragmentManager, null)
     }
-
-    private var name: String? = null
-
-    private var role: String? = null
-
-    private var description: String? = null
 
     private lateinit var binding: EditDialogBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            name = it.getString(NAME_ARG)
-            role = it.getString(ROLE_ARG)
-            description = it.getString(DESC_ARG)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,28 +46,34 @@ class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment(
     ): View {
         binding = EditDialogBinding.inflate(inflater, container, false)
 
-        binding.save.setOnClickListener { save() }
-        binding.cancel.setOnClickListener { dismiss() }
-
-        binding.name.setText(name)
-        binding.role.setText(role)
-        binding.description.setText(description)
+        initButtonListeners()
+        initTextFields()
 
         return binding.root
     }
 
-    private fun save()
-    {
-        listener.onSave(getPerson())
+    private fun initButtonListeners() {
+        binding.save.setOnClickListener { save() }
+        binding.cancel.setOnClickListener { dismiss() }
+    }
+
+    private fun initTextFields() {
+        arguments?.let {
+            binding.name.setText(it.getString(NAME_ARG))
+            binding.role.setText(it.getString(ROLE_ARG))
+            binding.description.setText(it.getString(DESC_ARG))
+        }
+    }
+
+    private fun save() {
+        listener.onSave(personViewData)
         dismiss()
     }
 
-    private fun getPerson() : Person {
-        return Person(binding.name.text.toString(), binding.role.text.toString(), null,
-            binding.description.text.toString())
-    }
-
-    public interface OnSaveListener {
-        fun onSave(updatedPerson: Person)
+    private val personViewData: PersonData by lazy {
+        Person(
+            binding.name.text.toString(), binding.role.text.toString(),
+            binding.description.text.toString()
+        )
     }
 }

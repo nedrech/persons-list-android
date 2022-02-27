@@ -9,12 +9,14 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import ru.nedrech.android.personslist.R
 import ru.nedrech.android.personslist.data.models.Person
+import ru.nedrech.android.personslist.data.models.PersonData
 import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment
 import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment.OnSaveListener
 
-class PersonsSwipeHelper(private val fragment: PersonsFragment)
-    : ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE,
-ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
+class PersonsSwipeHelper(private val fragment: PersonsFragment) : ItemTouchHelper.SimpleCallback(
+    ItemTouchHelper.ACTION_STATE_IDLE,
+    ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+) {
 
     override fun isLongPressDragEnabled(): Boolean = false
 
@@ -33,18 +35,16 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
 
             showSnackBar(position, item)
         } else {
-            EditDialogFragment.newInstance(item, object : OnSaveListener {
-                override fun onSave(updatedPerson: Person) {
-                    if (item.name != updatedPerson.name)
-                        item.name = updatedPerson.name
-                    if (item.role != updatedPerson.role)
-                        item.role = updatedPerson.role
-                    if (item.description != updatedPerson.description)
-                        item.description = updatedPerson.description
-                    fragment.adapter.updateItem(position)
-                    fragment.viewModel.update(item)
+            EditDialogFragment.show(fragment.parentFragmentManager, item, object : OnSaveListener {
+                override fun onSave(updatedData: PersonData) {
+                    if (item != updatedData) {
+                        item.applyData(updatedData)
+                        fragment.adapter.updateItem(position)
+                        fragment.viewModel.update(item)
+                    }
                 }
-            }).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
+            })
+
             fragment.adapter.updateItem(position)
         }
     }
@@ -53,7 +53,12 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
         Snackbar
             .make(fragment.binding.root, R.string.removed_from_list, Snackbar.LENGTH_LONG)
             .setAction(R.string.cancel) { fragment.adapter.addItem(position, item) }
-            .setActionTextColor(ContextCompat.getColor(fragment.requireContext(), R.color.light_blue))
+            .setActionTextColor(
+                ContextCompat.getColor(
+                    fragment.requireContext(),
+                    R.color.light_blue
+                )
+            )
             .addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     super.onDismissed(transientBottomBar, event)
@@ -86,19 +91,21 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
             rect.bottom = itemView.bottom - width
 
             if (dX < 0) {
+                setST(leftST)
+
                 resId = R.drawable.ic_delete
                 rect.left = itemView.right - 2 * width
                 rect.right = itemView.right - width
             } else {
+                setST(rightST)
+
                 resId = R.drawable.ic_edit
                 rect.left = itemView.left + width
                 rect.right = itemView.left + 2 * width
 
-                val s = itemView.width * rightSwipeThreshold
-                if (dX >= s) {
-                    newDx = s
-                    defaultSwipeThreshold = rightSwipeThreshold
-                }
+                val limiter = itemView.width * rightST
+                if (dX >= limiter)
+                    newDx = limiter
             }
 
             ContextCompat.getDrawable(fragment.requireContext(), resId)
@@ -108,11 +115,16 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
         super.onChildDraw(c, recyclerView, viewHolder, newDx, dY, actionState, isCurrentlyActive)
     }
 
-    private val rightSwipeThreshold = .2f
+    private val leftST = .5f
+    private val rightST = .2f
 
-    private var defaultSwipeThreshold = .5f
+    private var defaultST = leftST
 
-    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
-        return defaultSwipeThreshold
+    private fun setST(st: Float) {
+        if (defaultST != st)
+            defaultST = st
     }
+
+    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float =
+        defaultST
 }

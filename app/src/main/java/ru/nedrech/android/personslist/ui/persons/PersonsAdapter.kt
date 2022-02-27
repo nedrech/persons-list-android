@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.data.models.Person
+import ru.nedrech.android.personslist.data.models.PersonData
 import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
 import ru.nedrech.android.personslist.ui.PersonActivity
 
@@ -28,8 +29,7 @@ class PersonsAdapter(private val context: Context) : RecyclerView.Adapter<Person
         notifyItemInserted(position)
     }
 
-    fun updateItem(position: Int)
-    {
+    fun updateItem(position: Int) {
         notifyItemChanged(position)
     }
 
