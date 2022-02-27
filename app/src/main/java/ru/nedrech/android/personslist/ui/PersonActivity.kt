@@ -2,13 +2,19 @@ package ru.nedrech.android.personslist.ui
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginTop
 import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.R
 import ru.nedrech.android.personslist.data.models.Person
@@ -41,6 +47,7 @@ class PersonActivity : AppCompatActivity() {
         binding = PersonActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        makeStatusBarTransparent()
         initToolBar()
 
         binding.name.text = intent.getStringExtra(NAME_ARG)
@@ -54,9 +61,14 @@ class PersonActivity : AppCompatActivity() {
         return true
     }
 
-    private fun initToolBar()
-    {
+    private fun makeStatusBarTransparent() {
+        window.statusBarColor = Color.TRANSPARENT
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+    }
+
+    private fun initToolBar() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle("")
     }
 }
