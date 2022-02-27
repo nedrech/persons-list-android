@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null)
             supportFragmentManager
                 .beginTransaction()
-                .replace(binding.mainFrame.id, PersonsFragment.newInstance())
+                .replace(binding.mainFrame.id, PersonsFragment())
                 .commitNow()
     }
 

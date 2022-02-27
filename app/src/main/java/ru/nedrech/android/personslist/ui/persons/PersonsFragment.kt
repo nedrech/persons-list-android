@@ -13,10 +13,6 @@ import ru.nedrech.android.personslist.databinding.PersonsFragmentBinding
 
 class PersonsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = PersonsFragment()
-    }
-
     lateinit var viewModel: PersonsViewModel
 
     lateinit var binding: PersonsFragmentBinding
