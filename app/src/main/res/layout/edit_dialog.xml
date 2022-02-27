@@ -38,7 +38,7 @@
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         android:maxHeight="200dp"
-        tools:text="Описание сотрудника" />
+        tools:text="@tools:sample/lorem/random" />
 
     <LinearLayout
         android:layout_width="wrap_content"
