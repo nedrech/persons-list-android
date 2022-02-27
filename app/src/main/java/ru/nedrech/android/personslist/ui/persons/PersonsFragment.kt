@@ -60,7 +60,7 @@ class PersonsFragment : Fragment() {
             if (persons.isEmpty())
                 viewModel.seedDatabase()
 
-            if (adapter.items.size == 0 || adapter.items.size == persons.size) {
+            if (persons.isNotEmpty() && adapter.items.isEmpty()) {
                 if (binding.spinner.isVisible) binding.spinner.visibility = View.INVISIBLE
                 adapter.items = persons.toMutableList()
             }
