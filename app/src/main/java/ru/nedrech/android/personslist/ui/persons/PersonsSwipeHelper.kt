@@ -14,8 +14,7 @@ import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment
 import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment.OnSaveListener
 
 class PersonsSwipeHelper(private val fragment: PersonsFragment) : ItemTouchHelper.SimpleCallback(
-    ItemTouchHelper.ACTION_STATE_IDLE,
-    ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+    ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
 ) {
 
     override fun isLongPressDragEnabled(): Boolean = false

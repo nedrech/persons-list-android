@@ -14,7 +14,7 @@ import ru.nedrech.android.personslist.data.models.PersonArgConsts.Companion.ROLE
 import ru.nedrech.android.personslist.data.models.PersonData
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
 
-class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment() {
+class EditDialogFragment : DialogFragment() {
 
     interface OnSaveListener {
         fun onSave(updatedData: PersonData)
@@ -25,12 +25,15 @@ class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment(
             fragmentManager: FragmentManager,
             personData: PersonData,
             listener: OnSaveListener
-        ) = EditDialogFragment(listener)
+        ) = EditDialogFragment()
             .apply {
                 arguments = personData.getBundle()
+                saveListener = listener
             }
             .showNow(fragmentManager, null)
     }
+
+    private lateinit var saveListener: OnSaveListener
 
     private lateinit var binding: EditDialogBinding
 
@@ -61,7 +64,7 @@ class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment(
     }
 
     private fun save() {
-        listener.onSave(personViewData)
+        saveListener.onSave(personViewData)
         dismiss()
     }
 
