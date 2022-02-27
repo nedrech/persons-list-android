@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import ru.nedrech.android.personslist.App
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.data.repositories.PersonRepository
+import java.util.*
 
 class PersonsViewModel : ViewModel() {
 
@@ -44,50 +45,6 @@ class PersonsViewModel : ViewModel() {
         }
     }
 
-    fun seedDatabase() {
-        val filler =
-            "Tation delenit percipitur at vix. Eam id posse dictas voluptua, veniam laoreet oportere no mea, quis regione suscipiantur mea an.\n" +
-                    "Eu cum iuvaret debitis voluptatibus, esse perfecto reformidans id has. Eu cum iuvaret debitis voluptatibus, esse perfecto reformidans id has. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at. Sale liber et vel. Ceteros assentior omittantur cum ad.\n" +
-                    "Nec labore cetero theophrastus no, ei vero facer veritus nec. Odio contentiones sed cu, usu commodo prompta prodesset id. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at. Elitr accommodare deterruisset eam te, vim munere pertinax consetetur at."
-
-        val photoUrl = "https://thispersondoesnotexist.com/image"
-
-        insertMany(
-            listOf(
-                Person("Борисов Тимофей Святославович", "Орнитолог", "$photoUrl?1", filler),
-                Person("Рудаков Игорь Михайлович", "Кинорежиссер", "$photoUrl?2", filler),
-                Person("Федоров Захар Даниилович", "Машинист локомотива", "$photoUrl?3", filler),
-                Person(
-                    "Баранов Артём Александрович",
-                    "Тюремный надзиратель",
-                    "$photoUrl?4",
-                    filler
-                ),
-                Person("Воронин Владислав Алексеевич", "Продюсер", "$photoUrl?5", filler),
-                Person("Окулова София Максимовна", "Канонир", "$photoUrl?6", filler),
-                Person("Левина Мария Дмитриевна", "Ботаник", "$photoUrl?7", filler),
-                Person("Вавилов Марк Артёмович", "Инженер-лесотехник", "$photoUrl?8", filler),
-                Person("Гончарова Софья Максимовна", "Журналист", "$photoUrl?9", filler),
-                Person(
-                    "Овчинникова Мелания Александровна",
-                    "Авиационный техник",
-                    "$photoUrl?10",
-                    filler
-                ),
-                Person("Рябов Адам Макарович", "Каскадёр", "$photoUrl?11", filler),
-                Person("Глебова Ева Артёмовна", "Виноградарь", "$photoUrl?12", filler),
-                Person("Никитина Ксения Тихоновна", "Плиточник", "$photoUrl?13", filler),
-                Person("Губанов Вадим Георгиевич", "Историк", "$photoUrl?14", filler),
-                Person("Корнеева Варвара Ярославовна", "Хлебороб", "$photoUrl?15", filler),
-                Person("Мальцев Ибрагим Алексеевич", "Морской пехотинец", "$photoUrl?16", filler),
-                Person("Сорокин Леонид Артёмович", "Кинодраматург", "$photoUrl?17", filler),
-                Person("Медведев Виталий Артёмович", "Лекальщик", "$photoUrl?18", filler),
-                Person("Крылова Марьям Савельевна", "Кинолог", "$photoUrl?19", filler),
-                Person("Морозов Дмитрий Никитич", "Художник", "$photoUrl?20", filler)
-            )
-        )
-    }
-
     fun deleteVarious(persons: List<Person>) {
         val dbPersons = allPersons.value!!
 
@@ -98,5 +55,18 @@ class PersonsViewModel : ViewModel() {
             .flatMap { it.value }
 
         deleteMany(difference)
+    }
+
+    fun seedDatabase(count: Int) {
+        val list = MutableList(count) {
+            Person(
+                "Иванов Иван Иванович",
+                "программист",
+                "https://avatars.dicebear.com/api/micah/${UUID.randomUUID()}.svg",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lacinia pulvinar purus vel sagittis. Etiam consectetur justo vitae dui viverra, ut finibus massa aliquam. Vivamus est justo, dignissim id diam ut, porta semper odio. Duis vestibulum volutpat odio, ut volutpat sapien bibendum in. Suspendisse at placerat eros. Aenean condimentum sem commodo, tincidunt mauris in, placerat massa. Sed placerat, dui feugiat eleifend tempor, quam diam consequat massa, id pulvinar nibh nibh nec libero. Etiam porttitor sagittis efficitur. Mauris et metus in odio ornare tincidunt.\n" +
+                        "\n" +
+                        "Vivamus volutpat mattis ex et rutrum. Donec ac accumsan neque, eu vehicula ipsum. Mauris risus nunc, hendrerit eget enim ac, finibus iaculis magna. Proin facilisis fringilla risus, ac posuere nisl commodo eget. In ex nibh, eleifend et velit sed, ultricies hendrerit magna. Duis ultricies felis tortor, eu vulputate lectus consectetur ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum erat non gravida semper."
+            )
+        }
     }
 }

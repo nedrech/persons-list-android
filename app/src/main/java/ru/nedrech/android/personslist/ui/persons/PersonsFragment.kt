@@ -49,7 +49,7 @@ class PersonsFragment : Fragment() {
         viewModel = ViewModelProvider(this)[PersonsViewModel::class.java]
         viewModel.allPersons.observe(viewLifecycleOwner) { persons ->
             if (persons.isEmpty())
-                viewModel.seedDatabase()
+                viewModel.seedDatabase(25)
 
             if (persons.isNotEmpty() && adapter.items.isEmpty()) {
                 if (binding.spinner.isVisible) binding.spinner.visibility = View.INVISIBLE
