@@ -32,6 +32,12 @@ class PersonsViewModel : ViewModel() {
         }
     }
 
+    fun update(person: Person) {
+        viewModelScope.launch {
+            repository.update(person)
+        }
+    }
+
     private fun deleteMany(persons: List<Person>) {
         viewModelScope.launch {
             repository.deleteMany(persons)

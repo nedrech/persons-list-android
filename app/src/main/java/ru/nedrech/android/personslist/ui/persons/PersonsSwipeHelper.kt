@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import ru.nedrech.android.personslist.R
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment
+import ru.nedrech.android.personslist.ui.editdialog.EditDialogFragment.OnSaveListener
 
 class PersonsSwipeHelper(private val fragment: PersonsFragment)
     : ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE,
@@ -32,9 +33,18 @@ ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
 
             showSnackBar(position, item)
         } else {
-            EditDialogFragment.newInstance(
-                item.name, item.role, item.description
-            ).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
+            EditDialogFragment.newInstance(item, object : OnSaveListener {
+                override fun onSave(updatedPerson: Person) {
+                    if (item.name != updatedPerson.name)
+                        item.name = updatedPerson.name
+                    if (item.role != updatedPerson.role)
+                        item.role = updatedPerson.role
+                    if (item.description != updatedPerson.description)
+                        item.description = updatedPerson.description
+                    fragment.adapter.updateItem(position)
+                    fragment.viewModel.update(item)
+                }
+            }).show(fragment.parentFragmentManager, EditDialogFragment.TAG)
             fragment.adapter.updateItem(position)
         }
     }

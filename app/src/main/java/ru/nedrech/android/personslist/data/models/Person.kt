@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "persons")
 data class Person(
 
-    val name: String,
+    var name: String,
 
-    val role: String,
+    var role: String,
 
     @ColumnInfo(name = "photo_url")
     val photoUrl: String?,
 
-    val description: String
+    var description: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

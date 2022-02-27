@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.EditDialogBinding
 
-class EditDialogFragment : DialogFragment() {
+class EditDialogFragment(private val listener: OnSaveListener) : DialogFragment() {
 
     companion object {
         val TAG = null
@@ -17,12 +18,12 @@ class EditDialogFragment : DialogFragment() {
         private const val ROLE_ARG = "roleArg"
         private const val DESC_ARG = "descArg"
 
-        fun newInstance(name: String, role: String, description: String) =
-            EditDialogFragment()
+        fun newInstance(person: Person, listener: OnSaveListener) =
+            EditDialogFragment(listener)
                 .apply { arguments = bundleOf(
-                    NAME_ARG to name,
-                    ROLE_ARG to role,
-                    DESC_ARG to description
+                    NAME_ARG to person.name,
+                    ROLE_ARG to person.role,
+                    DESC_ARG to person.description
                 )}
     }
 
@@ -62,6 +63,16 @@ class EditDialogFragment : DialogFragment() {
 
     private fun save()
     {
+        listener.onSave(getPerson())
+        dismiss()
+    }
 
+    private fun getPerson() : Person {
+        return Person(binding.name.text.toString(), binding.role.text.toString(), null,
+            binding.description.text.toString())
+    }
+
+    public interface OnSaveListener {
+        fun onSave(updatedPerson: Person)
     }
 }
