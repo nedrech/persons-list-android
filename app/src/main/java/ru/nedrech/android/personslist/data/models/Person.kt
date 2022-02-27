@@ -1,5 +1,6 @@
 package ru.nedrech.android.personslist.data.models
 
+import android.os.Bundle
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -43,5 +44,9 @@ data class Person(
 
     override fun hashCode(): Int {
         return super.hashCode()
+    }
+
+    override fun getBundle(): Bundle = super.getBundle().apply {
+        putString(PersonArgConsts.PHOT_ARG, photoUrl)
     }
 }
