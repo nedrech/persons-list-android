@@ -1,17 +1,16 @@
 package ru.nedrech.android.personslist.ui.persons
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.data.models.Person
-import ru.nedrech.android.personslist.data.models.PersonData
-import ru.nedrech.android.personslist.databinding.AdapterPersonsBinding
+import ru.nedrech.android.personslist.databinding.PersonCardviewBinding
 import ru.nedrech.android.personslist.ui.PersonActivity
 
-class PersonsAdapter(private val context: Context) : RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
+class PersonsAdapter(private val context: Context) :
+    RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
 
     var items = mutableListOf<Person>()
         set(value) {
@@ -35,7 +34,7 @@ class PersonsAdapter(private val context: Context) : RecyclerView.Adapter<Person
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = AdapterPersonsBinding.inflate(inflater, parent, false)
+        val binding = PersonCardviewBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -53,5 +52,5 @@ class PersonsAdapter(private val context: Context) : RecyclerView.Adapter<Person
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(val binding: AdapterPersonsBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: PersonCardviewBinding) : RecyclerView.ViewHolder(binding.root)
 }

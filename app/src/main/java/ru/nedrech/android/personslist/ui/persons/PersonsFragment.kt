@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.nedrech.android.personslist.databinding.FragmentPersonsBinding
+import ru.nedrech.android.personslist.databinding.PersonsFragmentBinding
 
 class PersonsFragment : Fragment() {
 
@@ -19,7 +19,7 @@ class PersonsFragment : Fragment() {
 
     lateinit var viewModel: PersonsViewModel
 
-    lateinit var binding: FragmentPersonsBinding
+    lateinit var binding: PersonsFragmentBinding
 
     lateinit var adapter: PersonsAdapter
 
@@ -28,7 +28,7 @@ class PersonsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPersonsBinding.inflate(inflater, container, false)
+        binding = PersonsFragmentBinding.inflate(inflater, container, false)
 
         initRecyclerView()
         initViewModel()
@@ -37,18 +37,13 @@ class PersonsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
 
         viewModel.deleteVarious(adapter.items)
     }
 
-    private fun initRecyclerView()
-    {
+    private fun initRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = PersonsAdapter(requireContext())
         binding.recyclerView.adapter = adapter

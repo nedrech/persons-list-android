@@ -4,8 +4,7 @@ abstract class PersonData(
     open val name: String,
     open val role: String,
     open val description: String
-)
-{
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

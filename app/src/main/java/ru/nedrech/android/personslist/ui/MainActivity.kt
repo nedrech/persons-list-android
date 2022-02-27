@@ -1,18 +1,18 @@
 package ru.nedrech.android.personslist.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.nedrech.android.personslist.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import ru.nedrech.android.personslist.databinding.MainActivityBinding
 import ru.nedrech.android.personslist.ui.persons.PersonsFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initToolBar()
@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun initToolBar()
-    {
+    private fun initToolBar() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
