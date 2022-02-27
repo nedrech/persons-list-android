@@ -58,15 +58,17 @@ class PersonsViewModel : ViewModel() {
     }
 
     fun seedDatabase(count: Int) {
-        val list = MutableList(count) {
-            Person(
-                "Иванов Иван Иванович",
-                "программист",
-                "https://avatars.dicebear.com/api/micah/${UUID.randomUUID()}.svg",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lacinia pulvinar purus vel sagittis. Etiam consectetur justo vitae dui viverra, ut finibus massa aliquam. Vivamus est justo, dignissim id diam ut, porta semper odio. Duis vestibulum volutpat odio, ut volutpat sapien bibendum in. Suspendisse at placerat eros. Aenean condimentum sem commodo, tincidunt mauris in, placerat massa. Sed placerat, dui feugiat eleifend tempor, quam diam consequat massa, id pulvinar nibh nibh nec libero. Etiam porttitor sagittis efficitur. Mauris et metus in odio ornare tincidunt.\n" +
-                        "\n" +
-                        "Vivamus volutpat mattis ex et rutrum. Donec ac accumsan neque, eu vehicula ipsum. Mauris risus nunc, hendrerit eget enim ac, finibus iaculis magna. Proin facilisis fringilla risus, ac posuere nisl commodo eget. In ex nibh, eleifend et velit sed, ultricies hendrerit magna. Duis ultricies felis tortor, eu vulputate lectus consectetur ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum erat non gravida semper."
-            )
-        }
+        insertMany(
+            MutableList(count) {
+                Person(
+                    "Иванов Иван Иванович",
+                    "программист",
+                    "https://i.pravatar.cc/600?u=${UUID.randomUUID()}",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lacinia pulvinar purus vel sagittis. Etiam consectetur justo vitae dui viverra, ut finibus massa aliquam. Vivamus est justo, dignissim id diam ut, porta semper odio. Duis vestibulum volutpat odio, ut volutpat sapien bibendum in. Suspendisse at placerat eros. Aenean condimentum sem commodo, tincidunt mauris in, placerat massa. Sed placerat, dui feugiat eleifend tempor, quam diam consequat massa, id pulvinar nibh nibh nec libero. Etiam porttitor sagittis efficitur. Mauris et metus in odio ornare tincidunt.\n" +
+                            "\n" +
+                            "Vivamus volutpat mattis ex et rutrum. Donec ac accumsan neque, eu vehicula ipsum. Mauris risus nunc, hendrerit eget enim ac, finibus iaculis magna. Proin facilisis fringilla risus, ac posuere nisl commodo eget. In ex nibh, eleifend et velit sed, ultricies hendrerit magna. Duis ultricies felis tortor, eu vulputate lectus consectetur ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum erat non gravida semper."
+                )
+            }
+        )
     }
 }
