@@ -7,10 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.nedrech.android.personslist.data.models.Person
 import ru.nedrech.android.personslist.databinding.PersonCardviewBinding
+import ru.nedrech.android.personslist.databinding.SampleItemBinding
 import ru.nedrech.android.personslist.ui.PersonActivity
 
 class PersonsAdapter(private val context: Context) :
-    RecyclerView.Adapter<PersonsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        const val TYPE_1 = 0
+        const val TYPE_2 = 1
+    }
 
     var items = mutableListOf<Person>()
         set(value) {
@@ -34,17 +40,20 @@ class PersonsAdapter(private val context: Context) :
 
     private var counter = 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = PersonCardviewBinding.inflate(inflater, parent, false)
 
-        binding.counter.text = counter.toString()
-        counter++
 
-        return ViewHolder(binding)
+
+        return when (viewType) {
+            TYPE_1 -> ViewHolder(PersonCardviewBinding.inflate(inflater, parent, false))
+            TYPE_2 -> SecondViewHolder(SampleItemBinding.inflate(inflater, parent, false))
+            else -> throw RuntimeException("1")
+        }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    private fun bindTypeOne(holder: ViewHolder, position: Int)
+    {
         val person = items[position]
 
         holder.binding.name.text = person.name
@@ -56,7 +65,27 @@ class PersonsAdapter(private val context: Context) :
         }
     }
 
+    private fun bindTypeSec(holder: SecondViewHolder, position: Int)
+    {
+        holder.binding.textt.text = position.toString()
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is ViewHolder -> bindTypeOne(holder, position)
+            is SecondViewHolder -> bindTypeSec(holder, position)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position % 2 == 0) {
+            return TYPE_1
+        }
+        return TYPE_2
+    }
+
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val binding: PersonCardviewBinding) : RecyclerView.ViewHolder(binding.root)
+    class SecondViewHolder(val binding: SampleItemBinding) : RecyclerView.ViewHolder(binding.root)
 }
