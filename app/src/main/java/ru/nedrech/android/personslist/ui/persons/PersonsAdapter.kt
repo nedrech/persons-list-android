@@ -32,9 +32,15 @@ class PersonsAdapter(private val context: Context) :
         notifyItemChanged(position)
     }
 
+    private var counter = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = PersonCardviewBinding.inflate(inflater, parent, false)
+
+        binding.counter.text = counter.toString()
+        counter++
+
         return ViewHolder(binding)
     }
 
