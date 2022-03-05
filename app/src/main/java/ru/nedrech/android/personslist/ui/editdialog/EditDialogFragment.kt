@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import ru.nedrech.android.personslist.data.models.Person
-import ru.nedrech.android.personslist.data.models.PersonArgConsts
 import ru.nedrech.android.personslist.data.models.PersonArgConsts.Companion.DESC_ARG
 import ru.nedrech.android.personslist.data.models.PersonArgConsts.Companion.NAME_ARG
 import ru.nedrech.android.personslist.data.models.PersonArgConsts.Companion.ROLE_ARG
@@ -20,7 +19,7 @@ class EditDialogFragment : DialogFragment() {
         fun onSave(updatedData: PersonData)
     }
 
-    companion object : PersonArgConsts() {
+    companion object {
         fun show(
             fragmentManager: FragmentManager,
             personData: PersonData,
